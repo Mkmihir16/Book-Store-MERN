@@ -19,7 +19,7 @@ const Home = () => {
         <h1 className=' text-red-600 font-extrabold text-4xl '>Book Store App</h1>
       </div>
       <div className='flex justify-center mt-4'>
-        <table className='text-center border-black border-2'>
+        {/* <table className='text-center border-black border-2'>
           <thead className='border-black border-2' >
           <tr className='text-xl' >
             <th className='py-3 px-6'>Sr. No</th>
@@ -60,7 +60,35 @@ const Home = () => {
               </tr>
             </tbody>}
     ):<tr>No record of books are store</tr>
-    }</table>  
+    }</table>   */}
+        {book ? book.map((val, index) => {
+          return <div className='card h-40 w-72 border-2 border-black rounded-lg mx-2'>
+            <div className='  upperpart flex h-8 justify-between items-center'>
+              <div className='px-6 py-2 font-extrabold'>
+                {val.title}
+              </div>
+              <div className='flex justify-center items-center '>
+                <Link to={`/book/${val._id}`}>
+                  <img src={infoimg} alt="" />
+                </Link>
+                <Link to={`/book/update/${val._id}`}>
+                  <img className='h-8' src={updateicon} alt="" />
+                </Link>
+                <Link to={`/book/delete/${val._id}`}>
+                  <img className='h-7' src={deleteimg} alt="" />
+                </Link>
+              </div>
+            </div>
+            <hr  />
+            <div className='lowerpart flex  justify-center items-center'>
+              <div className='flex flex-col items-center justify-center'>
+                <p>Author : {val.author}</p>
+                <p>Publish Year : {val.pbyear}</p>
+              </div>
+            </div>
+
+          </div>
+        }) : " "}
       </div>
       <Link to='/book/create'>
         {/* <img src={createimg} className='bg-red-400 absolute top-3/4 left-[95%]' alt="" /> */}
